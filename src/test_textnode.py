@@ -10,8 +10,8 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(node, node2)
 
     def test_eq2(self):
-        node1 = TextNode("Testing",TextType.NORMAL)
-        node2 = TextNode("Testing",TextType.NORMAL)
+        node1 = TextNode("Testing",TextType.TEXT)
+        node2 = TextNode("Testing",TextType.TEXT)
         self.assertEqual(node1,node2)
     
     def test_url(self):
@@ -20,10 +20,10 @@ class TestTextNode(unittest.TestCase):
 
     def test_neq(self):
         node1 = TextNode("Testing",TextType.BOLD)
-        node2 = TextNode("Testing",TextType.NORMAL)
+        node2 = TextNode("Testing",TextType.TEXT)
         self.assertNotEqual(node1,node2)
     
-    
+
 
 
 if __name__ == "__main__":
