@@ -26,33 +26,33 @@ def process_block(block,blocktype):
             tag = f"h{level}"
             clean_block = block.lstrip('#').strip()
             #return f"<{tag}>{text_to_children(clean_block)}</{tag}>"
-            return HTMLNode(tag, text_to_children(clean_block))
+            return ParentNode(tag, text_to_children(clean_block))
         case "code":
             #code_text = re.sub(r'^```[\w]*\n|```$', '', block)
             code_text = re.sub(r'^```|```$', '', block).strip()
-            code_node = HTMLNode("code", [LeafNode(None, code_text)])
-            return HTMLNode("pre", [code_node])
+            code_node = ParentNode("code", [LeafNode(None, code_text)])
+            return ParentNode("pre", [code_node])
         case "quote":
             clean_block=block.lstrip('>').strip()
-            return HTMLNode("blockquote", text_to_children(clean_block))
+            return ParentNode("blockquote", text_to_children(clean_block))
         case "paragraph":
-            return HTMLNode("p", text_to_children(block))
+            return ParentNode("p", text_to_children(block))
         case "unordered_list":
 
             items = block.split('\n')
             list_items=[]
             for item in items:
                 item=item.lstrip('-*').strip()
-                list_items.append(HTMLNode("li", text_to_children(item)))
+                list_items.append(ParentNode("li", text_to_children(item)))
             
-            return HTMLNode("ul", list_items)
+            return ParentNode("ul", list_items)
         case "ordered_list":
             items = block.split('\n')
             list_items=[]
             for item in items:
                 item = re.sub(r'^\d+\.\s*', '', item.strip())
-                list_items.append(HTMLNode("li", text_to_children(item)))
-            return HTMLNode("ol",list_items)
+                list_items.append(ParentNode("li", text_to_children(item)))
+            return ParentNode("ol",list_items)
 
 
 
