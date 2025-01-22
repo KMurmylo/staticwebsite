@@ -11,7 +11,7 @@ class TestblockgoBlocktype(unittest.TestCase):
         self.assertEqual(block_to_block_type(input),"heading")
 
     def test_code(self):
-        input="``` Print.('hello')```"
+        input="``` \nPrint.('hello')```"
         self.assertEqual(block_to_block_type(input),"code")
 
     def test_quote(self):
@@ -34,7 +34,7 @@ class TestblockgoBlocktype(unittest.TestCase):
     def test_parahraph(self):
         input="Just a regular paragraph"
         self.assertEqual(block_to_block_type(input),"paragraph")
-        
+
     def test_multiline_code(self):
         input = "```\nline 1\nline 2\n```"
         self.assertEqual(block_to_block_type(input), "code")
